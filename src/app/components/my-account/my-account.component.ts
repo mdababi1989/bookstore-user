@@ -38,7 +38,6 @@ export class MyAccountComponent implements OnInit {
   			console.log(res);
   			localStorage.setItem("xAuthToken", res['token']);
   			this.loggedIn = true;
-  			location.reload();
   			this.router.navigate(['/home']);
   		},
   		error => {
@@ -87,9 +86,11 @@ export class MyAccountComponent implements OnInit {
   ngOnInit() {
   	this.loginService.checkSession().subscribe(
   		res => {
+  		  console.log(res);
   			this.loggedIn = true;
   		},
   		error => {
+        console.log(error);
   			this.loggedIn = false;
   		}
   	);

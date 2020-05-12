@@ -15,15 +15,14 @@ export class LoginService {
   	let basicHeader = "Basic "+encodedCredentials;
   	let reqHeaders = new HttpHeaders()
       .set('Content-Type' , 'application/x-www-form-urlencoded')
-      .set('Authoritation' , basicHeader);
+      .set('Authorization' , basicHeader);
   	return this.http.get(url, {headers: reqHeaders});
   }
 
   checkSession() {
   	let url = this.serverPath+'/checkSession';
-    let reqHeaders = new HttpHeaders()
-      .set('x-auth-token' , localStorage.getItem('xAuthToken'));
-
+    let reqHeaders = new HttpHeaders();
+    reqHeaders = reqHeaders.set('x-auth-token',JSON.stringify(localStorage.getItem('xAuthToken')));
   	return this.http.get(url, {headers: reqHeaders});
   }
 
