@@ -1,38 +1,23 @@
 <div class="page-top" style="width: 100%; height: 20px; background-color: #f46b42"></div>
-
-<nav class="navbar navbar-expand-lg navbar-dark primary-color">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
   <a class="navbar-brand" routerLink="/home">LE'S BOOKSTORE</a>
-
-  <div class="container">
-    <div class="navbar-header">
-      <a class="navbar-brand pointer" >LE'S BOOKSTORE</a>
+  <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <div class="navbar-nav">
+      <a routerLink="/bookList" class="nav-item nav-link">BOOK</a>
+      <a *ngIf="!loggedIn" routerLink="/myAccount" class="nav-item nav-link">MY ACCOUNT</a>
+      <a *ngIf="loggedIn" routerLink="/shoppingCart" class="nav-item nav-link">SHOPPING CART</a>
+      <a *ngIf="loggedIn" routerLink="/myProfile" class="nav-item nav-link">MY PROFILE</a>
+      <a *ngIf="loggedIn" (click)="logout()" class="nav-item nav-link">LOGOUT</a>
     </div>
-
-    <div id="navbar">
-      <ul class="nav navbar-nav navbar-left">
-        <li><a md-button routerLink="/bookList">BOOK</a></li>
-        <form (ngSubmit)="onSearcyByTitle()" class="navbar-form">
-          <div class="form-group">
-            <input type="text" name="searcyByTitle" [(ngModel)]="keyboard" class="form-control"
-                   placeholder="Book Title"/>
-          </div>
-          <button type="submit" class="btn btn-default">Search</button>
-        </form>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li *ngIf="!loggedIn">
-          <a md-button routerLink="/myAccount">MY ACCOUNT</a>
-        </li>
-        <li *ngIf="loggedIn">
-          <a md-button routerLink="/shoppingCart">SHOPPING CART</a>
-        </li>
-        <li *ngIf="loggedIn">
-          <a md-button routerLink="/myProfile">MY PROFILE</a>
-        </li>
-        <li *ngIf="loggedIn">
-          <a md-button (click)="logout()">LOGOUT</a>
-        </li>
-      </ul>
-    </div>
+    <form class="form-inline ml-auto" (ngSubmit)="onSearchByTitle()">
+      <input type="text" name="searchByTitle" [(ngModel)]="keyboard" class="form-control"
+             placeholder="Book Title"/>
+      <button type="submit" class="btn btn-outline-light">Search</button>
+    </form>
   </div>
 </nav>
+<br><br>
+
